@@ -1,8 +1,8 @@
-﻿namespace QuickSort
+﻿namespace QuickSort_OnlyFile
 {
     public class Sort
     {
-        public static void QuickSort(int[] arr, int start, int end)
+        public static void QuickSort(ArrayEmulator arr, int start, int end)
         {
             if (start < end)
             {
@@ -13,7 +13,7 @@
             }
         }
 
-        private static int Partition(int[] arr, int start, int end)
+        private static int Partition(ArrayEmulator arr, int start, int end)
         {
             int temp;
             int p = arr[end];
@@ -35,7 +35,7 @@
         }
 
       //----------------------
-      
+      /*
       static LinkedList.Node LListPartition(LinkedList.Node head, LinkedList.Node tail)
       {
           // set pivot as h element  
@@ -63,8 +63,7 @@
           return i;
       }
 
-      /* A recursive implementation of  
-      quicksort for linked list */
+     
       public static void LinkedListQuickSort(LinkedList.Node head, LinkedList.Node tail)
       {
           if (tail != null && head != tail && head != tail.Next)
@@ -74,6 +73,6 @@
               LinkedListQuickSort(temp.Next, tail);
           }
       }
-
+*/
     }
 }

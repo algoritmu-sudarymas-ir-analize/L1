@@ -1,11 +1,10 @@
-﻿//#define ekranas
-
-//#define linkedList // Jei sitas ijungtas tai skaito i linked list, jei uzkomentuotas tai i masyva
+﻿//#define masyvu_isvedimas
 
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+
 
 namespace QuickSort
 {
@@ -13,7 +12,7 @@ namespace QuickSort
     {
         public static void Main(string[] args)
         {
-                 //Konvertuojame paveikslėlį if JPG į BMP
+            //Konvertuojame paveikslėlį if JPG į BMP
             var name = "dangus";
             Bitmap image = new Bitmap("dangus.jpg");
             image.Save(name + ".bmp", ImageFormat.Bmp);
@@ -27,40 +26,32 @@ namespace QuickSort
                 int aukštis = BitConverter.ToInt32(b, 0x0016); //paveikslėlio aukštis
 
                 //Taškus verčiame į spalvų kodus
-#if !linkedList
-                int[] bs = new int[plotis * aukštis];
-#else
-                var bs = new LinkedList();
-#endif
+                int[] bs = new int[plotis * aukštis]; //<--masyvas
+                var bsLinked = new LinkedList(); //<--Linked List
+
                 int j = 54;
                 for (int i = 0; i < plotis * aukštis; i++)
                 {
-#if !linkedList
-                    bs[i] = (((b[j + 2] << 8) + b[j + 1]) << 8) + b[j];
-#else
-                    bs.AddLast((((b[j + 2] << 8) + b[j + 1]) << 8) + b[j]);
-#endif
+                    bs[i] = (((b[j + 2] << 8) + b[j + 1]) << 8) + b[j]; //<-- masyvas
+                    bsLinked.AddLast((((b[j + 2] << 8) + b[j + 1]) << 8) + b[j]); //<-- Linked List
                     j += 3;
                 }
+                
 
-#if ekranas
-                ShowArray(bs, "Pries rikiavima");
+#if masyvu_isvedimas
+                Show(bs, bsLinked, "Pries rikiavima");
 #endif
                 //Rikiuojame taškų kodus ir išvedame į bylą
-                Sort.QuickSort(bs, 0, bs.Length - 1);
-#if ekranas
-                ShowArray(bs, "Po rikiavimo");
+                Sort.QuickSort(bs, 0, bs.Length - 1); //<-- rikiuojam masyva
+                Sort.LinkedListQuickSort(bsLinked.Head, bsLinked.Tail); //<-- rikiuojam Linked List
+#if masyvu_isvedimas
+                Show(bs, bsLinked, "Po rikiavimo");
 #endif
-                j = 54;
-                /*for (int i = 0; i < bs.Length; i++)
-                {
-                    byte[] p = BitConverter.GetBytes(bs[i]);
-                    b[j] = p[0];
-                    b[j + 1] = p[1];
-                    b[j + 2] = p[2];
-                    j += 3;
-                }*/
 
+                byte[] bLinked = (byte[]) b.Clone(); // kopija Linked Listo failui
+
+                // paruosiam surikiuota nuotrauka is masyvo
+                j = 54;
                 foreach (int number in bs)
                 {
                     byte[] p = BitConverter.GetBytes(number);
@@ -69,6 +60,19 @@ namespace QuickSort
                     b[j + 2] = p[2];
                     j += 3;
                 }
+                //--
+
+                // paruosiam surikiuota nuotrauka is Linked Listo
+                j = 54;
+                foreach (int number in bsLinked)
+                {
+                    byte[] p = BitConverter.GetBytes(number);
+                    bLinked[j] = p[0];
+                    bLinked[j + 1] = p[1];
+                    bLinked[j + 2] = p[2];
+                    j += 3;
+                }
+                //--
 
                 using (FileStream file2 = new FileStream(name + "_surikiuota.bmp", FileMode.Create, FileAccess.Write))
                 {
@@ -77,21 +81,28 @@ namespace QuickSort
                     file2.Close();
                 }
 
-                //
-                file.Close();
-        
-            
+                using (FileStream file3 = new FileStream(name + "_surikiuota_LinkedList.bmp", FileMode.Create,
+                    FileAccess.Write))
+                {
+                    file3.Seek(0, SeekOrigin.Begin);
+                    file3.Write(bLinked, 0, bLinked.Length);
+                    file3.Close();
+                }
+            }
         }
 
-        }
-
-        static void ShowArray(int[] bs, string message)
+        static void Show(int[] bs, LinkedList bsLinked, string message)
         {
             Console.WriteLine(message);
             Console.WriteLine("Iveskite inkesus pradziai ir pabaigai:");
             string[] indexes = Console.ReadLine().Split();
-            for (int i = int.Parse(indexes[0]); i < int.Parse(indexes[1]); i++)
+
+            Console.WriteLine("Masyvas:");
+            for (int i = int.Parse(indexes[0]); i <= int.Parse(indexes[1]); i++)
                 Console.Write(bs[i] + " ");
+
+            Console.WriteLine("\nLinked Listas:");
+            Console.WriteLine(bsLinked.GetRangeString(int.Parse(indexes[0]), int.Parse(indexes[1])));
         }
     }
 }

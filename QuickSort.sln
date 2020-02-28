@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSort", "QuickSort.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortUnitTests", "SortUnitTests\SortUnitTests.csproj", "{5DC03865-FC8F-48A1-A7CD-377EEF3DE872}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSort_OnlyFile", "QuickSort_OnlyFile\QuickSort_OnlyFile.csproj", "{D38614F2-2B53-455B-9FD4-EFD213DBC18C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{5DC03865-FC8F-48A1-A7CD-377EEF3DE872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC03865-FC8F-48A1-A7CD-377EEF3DE872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC03865-FC8F-48A1-A7CD-377EEF3DE872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38614F2-2B53-455B-9FD4-EFD213DBC18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38614F2-2B53-455B-9FD4-EFD213DBC18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38614F2-2B53-455B-9FD4-EFD213DBC18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38614F2-2B53-455B-9FD4-EFD213DBC18C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
