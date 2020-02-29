@@ -50,6 +50,10 @@
       <Project>{157f139d-16bc-4aee-bbfa-ec092d920cd6}</Project>
       <Name>QuickSort</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuickSort_OnlyFile\QuickSort_OnlyFile.csproj">
+      <Project>{d38614f2-2b53-455b-9fd4-efd213dbc18c}</Project>
+      <Name>QuickSort_OnlyFile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

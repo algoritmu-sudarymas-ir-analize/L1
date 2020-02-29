@@ -17,6 +17,7 @@
       <e p="QuickSort_OnlyFile" t="IncludeRecursive">
         <e p="ArrayEmulator.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="LinkedListEmulator.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">

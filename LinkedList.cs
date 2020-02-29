@@ -7,8 +7,8 @@ namespace QuickSort
 {
     public class LinkedList : IEnumerable<int>
     {
-        public Node Head;
-        public Node Tail;
+        public Node Head { get; set; }
+        public Node Tail { get; set; }
 
 /* a node of the doubly linked list */
         public class Node

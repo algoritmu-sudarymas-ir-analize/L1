@@ -1,5 +1,8 @@
 ﻿//#define masyvu_isvedimas
 
+//#define linkedList
+#define array
+
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -26,29 +29,43 @@ namespace QuickSort
                 int aukštis = BitConverter.ToInt32(b, 0x0016); //paveikslėlio aukštis
 
                 //Taškus verčiame į spalvų kodus
+#if array
                 int[] bs = new int[plotis * aukštis]; //<--masyvas
+#endif
+#if linkedList
                 var bsLinked = new LinkedList(); //<--Linked List
+#endif
 
                 int j = 54;
                 for (int i = 0; i < plotis * aukštis; i++)
                 {
+#if array
                     bs[i] = (((b[j + 2] << 8) + b[j + 1]) << 8) + b[j]; //<-- masyvas
+#endif
+#if linkedList
                     bsLinked.AddLast((((b[j + 2] << 8) + b[j + 1]) << 8) + b[j]); //<-- Linked List
+#endif
                     j += 3;
                 }
-                
+
 
 #if masyvu_isvedimas
                 Show(bs, bsLinked, "Pries rikiavima");
 #endif
-                //Rikiuojame taškų kodus ir išvedame į bylą
+#if array
                 Sort.QuickSort(bs, 0, bs.Length - 1); //<-- rikiuojam masyva
+#endif
+#if linkedList
                 Sort.LinkedListQuickSort(bsLinked.Head, bsLinked.Tail); //<-- rikiuojam Linked List
+#endif
 #if masyvu_isvedimas
                 Show(bs, bsLinked, "Po rikiavimo");
 #endif
 
+#if linkedList
                 byte[] bLinked = (byte[]) b.Clone(); // kopija Linked Listo failui
+#endif
+#if array
 
                 // paruosiam surikiuota nuotrauka is masyvo
                 j = 54;
@@ -61,7 +78,8 @@ namespace QuickSort
                     j += 3;
                 }
                 //--
-
+#endif
+#if linkedList
                 // paruosiam surikiuota nuotrauka is Linked Listo
                 j = 54;
                 foreach (int number in bsLinked)
@@ -73,14 +91,16 @@ namespace QuickSort
                     j += 3;
                 }
                 //--
-
+#endif
+#if array
                 using (FileStream file2 = new FileStream(name + "_surikiuota.bmp", FileMode.Create, FileAccess.Write))
                 {
                     file2.Seek(0, SeekOrigin.Begin);
                     file2.Write(b, 0, b.Length);
                     file2.Close();
                 }
-
+#endif
+#if linkedList
                 using (FileStream file3 = new FileStream(name + "_surikiuota_LinkedList.bmp", FileMode.Create,
                     FileAccess.Write))
                 {
@@ -88,6 +108,7 @@ namespace QuickSort
                     file3.Write(bLinked, 0, bLinked.Length);
                     file3.Close();
                 }
+#endif
             }
         }
 

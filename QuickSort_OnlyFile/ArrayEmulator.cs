@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using QuickSort;
 
 namespace QuickSort_OnlyFile
 {
@@ -19,9 +18,12 @@ namespace QuickSort_OnlyFile
         private int elementSize;
 
         /// <param name="elementSize"> element size in bytes.</param>
-        public ArrayEmulator(string fileName, int size = sizeof(int))
+        /// <param name="initialLength"> Just like declaring an array you specify total size.</param>
+        public ArrayEmulator(string fileName, int size = sizeof(int), int initialLength = 0)
         {
-            this.elementSize = size;
+            elementSize = size;
+            Length = initialLength;
+            
             fn = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
             bw = new BinaryWriter(fn);
             br = new BinaryReader(fn);
@@ -36,23 +38,16 @@ namespace QuickSort_OnlyFile
         // this is where the magic happens :)
         public int this[int index]
         {
-            get => GetNumber(index);
-            set => SetNumber(index, value);
-        }
-
-        private int GetNumber(int i)
-        {
-            int k = i * elementSize;
-            br.BaseStream.Seek(k, SeekOrigin.Begin);
-            return br.ReadInt32();
-        }
-
-        // priskiriame i-tajam elementui nauja reiksme
-        private void SetNumber(int i, int value)
-        {
-            int k = i * elementSize;
-            bw.BaseStream.Seek(k, SeekOrigin.Begin);
-            bw.Write(value);
+            get
+            {
+                br.BaseStream.Seek(index * elementSize, SeekOrigin.Begin);
+                return br.ReadInt32();
+            }
+            set
+            {
+                bw.BaseStream.Seek(index * elementSize, SeekOrigin.Begin);
+                bw.Write(value);
+            }
         }
 
         public void Dispose() => fn.Close();
