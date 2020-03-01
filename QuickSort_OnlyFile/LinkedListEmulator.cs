@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-namespace QuickSort_OnlyFile //TODO make api more simple
+namespace QuickSort_OnlyFile
 {
     public class LinkedListEmulator : IDisposable, IEnumerable<int>
     {
@@ -112,5 +112,18 @@ namespace QuickSort_OnlyFile //TODO make api more simple
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        
+        public int[] ToArray()
+        {
+            int[] arr = new int[Count];
+            var en = GetEnumerator();
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = en.Current;
+                en.MoveNext();
+            }
+
+            return arr;
+        }
     }
 }

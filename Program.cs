@@ -1,7 +1,8 @@
 ﻿//#define masyvu_isvedimas
 
-//#define linkedList
-#define array
+#define linkedList
+
+//#define array
 
 using System;
 using System.Drawing;
@@ -50,7 +51,7 @@ namespace QuickSort
 
 
 #if masyvu_isvedimas
-                Show(bs, bsLinked, "Pries rikiavima");
+                Show(bs, "Pries rikiavima");
 #endif
 #if array
                 Sort.QuickSort(bs, 0, bs.Length - 1); //<-- rikiuojam masyva
@@ -59,19 +60,25 @@ namespace QuickSort
                 Sort.LinkedListQuickSort(bsLinked.Head, bsLinked.Tail); //<-- rikiuojam Linked List
 #endif
 #if masyvu_isvedimas
-                Show(bs, bsLinked, "Po rikiavimo");
+                Show(bs, "Po rikiavimo");
 #endif
 
 #if linkedList
                 byte[] bLinked = (byte[]) b.Clone(); // kopija Linked Listo failui
 #endif
 #if array
-
+                int sappa = 0;
                 // paruosiam surikiuota nuotrauka is masyvo
                 j = 54;
-                foreach (int number in bs)
+                foreach (int number in Spiral.SpiralOrder(bs, aukštis, plotis))
                 {
                     byte[] p = BitConverter.GetBytes(number);
+                    if (sappa < 10)
+                    {
+                        Console.WriteLine(p[0] + " " + p[1] + " " + p[1]);
+                        sappa++;
+                    }
+
                     b[j] = p[0];
                     b[j + 1] = p[1];
                     b[j + 2] = p[2];
@@ -82,7 +89,7 @@ namespace QuickSort
 #if linkedList
                 // paruosiam surikiuota nuotrauka is Linked Listo
                 j = 54;
-                foreach (int number in bsLinked)
+                foreach (int number in Spiral.SpiralOrder(bsLinked.ToArray(), aukštis, plotis))
                 {
                     byte[] p = BitConverter.GetBytes(number);
                     bLinked[j] = p[0];
@@ -112,18 +119,14 @@ namespace QuickSort
             }
         }
 
-        static void Show(int[] bs, LinkedList bsLinked, string message)
+        static void Show(int[] bs, string message)
         {
             Console.WriteLine(message);
             Console.WriteLine("Iveskite inkesus pradziai ir pabaigai:");
             string[] indexes = Console.ReadLine().Split();
 
-            Console.WriteLine("Masyvas:");
             for (int i = int.Parse(indexes[0]); i <= int.Parse(indexes[1]); i++)
                 Console.Write(bs[i] + " ");
-
-            Console.WriteLine("\nLinked Listas:");
-            Console.WriteLine(bsLinked.GetRangeString(int.Parse(indexes[0]), int.Parse(indexes[1])));
         }
     }
 }

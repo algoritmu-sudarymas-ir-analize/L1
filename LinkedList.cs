@@ -9,6 +9,7 @@ namespace QuickSort
     {
         public Node Head { get; set; }
         public Node Tail { get; set; }
+        public int Count { get;private set; }
 
 /* a node of the doubly linked list */
         public class Node
@@ -59,6 +60,8 @@ greater elements to right of pivot */
                 Head.Prev = new Node(data, null, Head);
                 Head = Head.Prev;
             }
+
+            Count++;
         }
 
         public void AddLast(int number)
@@ -73,6 +76,8 @@ greater elements to right of pivot */
                 Tail.Next = new Node(number, Tail);
                 Tail = Tail.Next;
             }
+
+            Count++;
         }
 
 
@@ -109,6 +114,19 @@ greater elements to right of pivot */
             }
 
             return builder.ToString().TrimEnd();
+        }
+
+        public int[] ToArray()
+        {
+            int[] arr = new int[Count];
+            var en = GetEnumerator();
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = en.Current;
+                en.MoveNext();
+            }
+
+            return arr;
         }
     }
 }

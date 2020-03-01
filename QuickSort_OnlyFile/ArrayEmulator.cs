@@ -23,7 +23,7 @@ namespace QuickSort_OnlyFile
         {
             elementSize = size;
             Length = initialLength;
-            
+
             fn = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
             bw = new BinaryWriter(fn);
             br = new BinaryReader(fn);
@@ -59,5 +59,18 @@ namespace QuickSort_OnlyFile
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public int[] ToArray()
+        {
+            int[] arr = new int[Length];
+            var en = GetEnumerator();
+            for (int i = 0; i < Length; i++)
+            {
+                arr[i] = en.Current;
+                en.MoveNext();
+            }
+
+            return arr;
+        }
     }
 }

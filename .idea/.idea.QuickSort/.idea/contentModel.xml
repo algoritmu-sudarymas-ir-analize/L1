@@ -36,6 +36,7 @@
         <e p="SortUnitTests.csproj" t="IncludeRecursive" />
         <e p="Tests.cs" t="Include" />
       </e>
+      <e p="Spiral.cs" t="Include" />
     </e>
   </component>
 </project>

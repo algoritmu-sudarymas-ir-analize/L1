@@ -14,7 +14,8 @@ namespace TestProject1
         [Test]
         [TestCase(new[] {3, 2, 1}, new[] {1, 2, 3})]
         [TestCase(new[] {9, 6, 7, 1, 3, 2, 5, 4, 8, 10}, new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})]
-        [TestCase(new[] {9, 8, 7, 6, 5, 4, 1, 2, 3, 3, 6, 9, 2, 5, 8, 1, 4, 7}, new[] {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9})]
+        [TestCase(new[] {9, 8, 7, 6, 5, 4, 1, 2, 3, 3, 6, 9, 2, 5, 8, 1, 4, 7},
+            new[] {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9})]
         public void ArrayQuickSort(int[] a, int[] b)
         {
             Console.WriteLine("Array before sorting ");
@@ -55,7 +56,8 @@ namespace TestProject1
         [Test]
         [TestCase(new[] {3, 2, 1}, new[] {1, 2, 3})]
         [TestCase(new[] {9, 6, 7, 1, 3, 2, 5, 4, 8, 10}, new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})]
-        [TestCase(new[] {9, 8, 7, 6, 5, 4, 1, 2, 3, 3, 6, 9, 2, 5, 8, 1, 4, 7}, new[] {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9})]
+        [TestCase(new[] {9, 8, 7, 6, 5, 4, 1, 2, 3, 3, 6, 9, 2, 5, 8, 1, 4, 7},
+            new[] {1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9})]
         public void ArrayEmulatorSort(int[] a, int[] b)
         {
             var arr = new ArrayEmulator("for_test.txt");
@@ -82,6 +84,6 @@ namespace TestProject1
             arr.Dispose();
             File.Delete("for_test.txt");
         }
-        
+
     }
 }

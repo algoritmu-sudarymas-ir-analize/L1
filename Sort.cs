@@ -53,7 +53,7 @@
                   i = (i is null) ? head : i.Next;
                   temp = i.Data;
                   i.Data = j.Data;
-                  j.Data = temp; //TODO make swap function
+                  j.Data = temp;
               }
 
           i = (i is null) ? head : i.Next; // Similar to i++  

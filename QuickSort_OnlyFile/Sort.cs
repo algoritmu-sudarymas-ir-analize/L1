@@ -53,7 +53,6 @@
                     temp = list.GetNodeData(i);
                     list.SetNodeData(i, list.GetNodeData(j));
                     list.SetNodeData(j, temp);
-                    //TODO make swap function
                 }
 
             i = (i == -1) ? head : list.GetNextAdress(i); // Similar to i++  

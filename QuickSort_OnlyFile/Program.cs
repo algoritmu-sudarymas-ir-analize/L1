@@ -54,7 +54,7 @@ namespace QuickSort_OnlyFile
 #if array
                 // paruosiam surikiuota nuotrauka is masyvo
                 j = 54;
-                foreach (int number in bs)
+                foreach (int number in QuickSort.Spiral.SpiralOrder(bs.ToArray(), aukštis, plotis))
                 {
                     byte[] p = BitConverter.GetBytes(number);
                     b[j] = p[0];
@@ -70,7 +70,7 @@ namespace QuickSort_OnlyFile
 #if linkedList
                 // paruosiam surikiuota nuotrauka is LinkedListo
                 j = 54;
-                foreach (int number in bsLinked)
+                foreach (int number in QuickSort.Spiral.SpiralOrder(bsLinked.ToArray(), aukštis, plotis))
                 {
                     byte[] p = BitConverter.GetBytes(number);
                     bLinked[j] = p[0];
