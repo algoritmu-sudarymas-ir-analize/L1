@@ -1,8 +1,7 @@
 ﻿//#define masyvu_isvedimas
 
-#define linkedList
-
-//#define array
+//#define linkedList
+#define array
 
 using System;
 using System.Drawing;

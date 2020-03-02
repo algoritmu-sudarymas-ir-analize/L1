@@ -6,10 +6,10 @@
         {
             if (start < end)
             {
-                int i = Partition(arr, start, end);
+                int pivot = Partition(arr, start, end);
 
-                QuickSort(arr, start, i - 1);
-                QuickSort(arr, i + 1, end);
+                QuickSort(arr, start, pivot - 1);
+                QuickSort(arr, pivot + 1, end);
             }
         }
 
