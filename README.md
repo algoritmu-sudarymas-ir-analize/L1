@@ -1,5 +1,5 @@
-Orginali nuotrauka
-![Orginali nuotrauka](NUOTRAUKOS/dangus.jpg)
+Originali nuotrauka
+![Originali nuotrauka](NUOTRAUKOS/dangus.jpg)
 Surikiuota didejanciai
 ![Surikiuota didejanciai](NUOTRAUKOS/dangus_surikiuota.bmp)
 Surikiuota ir isdeliota spirale pradedant nuo isores

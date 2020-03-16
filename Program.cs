@@ -66,17 +66,11 @@ namespace QuickSort
                 byte[] bLinked = (byte[]) b.Clone(); // kopija Linked Listo failui
 #endif
 #if array
-                int sappa = 0;
                 // paruosiam surikiuota nuotrauka is masyvo
                 j = 54;
                 foreach (int number in Spiral.SpiralOrder(bs, aukštis, plotis))
                 {
                     byte[] p = BitConverter.GetBytes(number);
-                    if (sappa < 10)
-                    {
-                        Console.WriteLine(p[0] + " " + p[1] + " " + p[1]);
-                        sappa++;
-                    }
 
                     b[j] = p[0];
                     b[j + 1] = p[1];
